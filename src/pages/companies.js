@@ -30,7 +30,6 @@ export default function Home() {
           flexWrap="wrap"
           justifyContent="center"
           py={4}
-          px={2}
           gap={2}
         >
           {companies?.map((company) => (

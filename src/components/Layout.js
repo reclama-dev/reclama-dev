@@ -18,6 +18,7 @@ export default function Layout({ previewImage, children }) {
         <Navbar />
         <Box
           pt={10}
+          px={2}
         >
           { children }
         </Box>

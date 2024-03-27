@@ -7,6 +7,7 @@ import {
 import useThrottledCallback from 'beautiful-react-hooks/useThrottledCallback'
 import useWindowScroll from 'beautiful-react-hooks/useWindowScroll'
 import Layout from '../components/Layout'
+import Disclaimer from '../components/Disclaimer'
 import RantCard from '../components/RantCard'
 import useRants from '../hooks/useRants'
 
@@ -50,21 +51,18 @@ export default function Home() {
         width="100%"
         gap={1}
       >
-        <Box mt={5}>
-          <Typography
-            variant="h1"
-          >
-            Últimas reclamações:
-          </Typography>
-        </Box>
+        <Disclaimer />
+        <Typography
+          variant="h1"
+        >
+          Últimas reclamações:
+        </Typography>
         <Box
           display="flex"
           flexWrap="wrap"
           justifyContent="center"
-          pt={4}
+          py={4}
           gap={2}
-          pb={8}
-          px={2}
         >
           {rants?.map((rant) => (
             <RantCard

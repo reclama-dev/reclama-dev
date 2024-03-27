@@ -6,6 +6,7 @@ import {
 import { useRouter } from 'next/router'
 import Layout from '../../components/Layout'
 import RantCard from '../../components/RantCard'
+import Disclaimer from '../../components/Disclaimer'
 import useRants from '../../hooks/useRants'
 import LoadingFooter from '../../components/LoadingFooter'
 
@@ -27,6 +28,7 @@ export default function Home() {
         width="100%"
         gap={1}
       >
+        <Disclaimer />
         <Typography
           variant="h1"
         >
@@ -37,7 +39,6 @@ export default function Home() {
           flexWrap="wrap"
           justifyContent="center"
           py={4}
-          px={2}
           gap={2}
         >
           {rants?.map((rant) => (

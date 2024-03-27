@@ -41,7 +41,7 @@ const NAV_ITEMS = [
     label: 'Fonte dos Dados',
     rel: 'noopener noreferrer',
     target: '_blank',
-    href: 'https://docs.google.com/spreadsheets/d/1u1_8ND_BY1DaGaQdu0ZRZPebrOaTJekE9hyw_7BAlzw/htmlview?usp=sharing',
+    href: 'https://docs.google.com/spreadsheets/d/1u1_8ND_BY1DaGaQdu0ZRZPebrOaTJekE9hyw_7BAlzw?usp=sharing',
   },
 ]
 
