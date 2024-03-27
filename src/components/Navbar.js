@@ -11,6 +11,7 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  useTheme,
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import Link from 'next/link'
@@ -45,6 +46,7 @@ const NAV_ITEMS = [
 ]
 
 export default function Navbar() {
+  const theme = useTheme()
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const handleDrawerToggle = useCallback(() => {
@@ -113,7 +115,12 @@ export default function Navbar() {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: DRAWER_WIDTH },
           }}
         >
-          <Typography variant="h6" sx={{ my: 2, display: 'flex', justifyContent: 'center' }}>
+          <Typography
+            variant="h6"
+            sx={{
+              my: 2, display: 'flex', flexDirection: 'column', alignItems: 'center',
+            }}
+          >
             <Link
               href="/"
               style={{
@@ -123,6 +130,18 @@ export default function Navbar() {
             >
               <Logo />
             </Link>
+            <Box
+              sx={{
+                [theme.breakpoints.up('md')]: {
+                  display: 'none',
+                },
+              }}
+            >
+              <small style={{ fontSize: '14px' }}>
+                {' '}
+                (onde o dev chora e a mãe não vê)
+              </small>
+            </Box>
           </Typography>
           <List sx={{ textAlign: 'left' }}>
             {NAV_ITEMS.map((item) => (
