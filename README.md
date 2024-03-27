@@ -6,7 +6,21 @@ Onde o dev chora e a mãe não vê.
 
 ## Getting Started
 
-First, run the development server:
+First, add some of the necessary env vars:
+
+```
+# API
+API_URL=https://api.reclama.dev
+
+# Sentry (optional)
+SENTRY_DSN=
+
+# Tag Manager (optional)
+GTM_TAG_ID=
+```
+
+
+Then run the development server:
 
 ```bash
 npm install
@@ -17,7 +31,7 @@ Open [http://localhost:6060](http://localhost:6060) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:6060/api/hello](http://localhost:6060/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
