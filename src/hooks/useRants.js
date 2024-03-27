@@ -12,6 +12,7 @@ query Rants($limit: Int, $offset: Int, $company_id: ID) {
       id
       name
     }
+    createdAt
   }
 }
 `

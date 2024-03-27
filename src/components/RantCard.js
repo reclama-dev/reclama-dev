@@ -19,9 +19,10 @@ export default function RantCard({ rant, hideCompanyButton }) {
       <Box
         display="flex"
         flexDirection="column"
-        justifyContent="center"
+        justifyContent="start"
         p={2}
         gap={1}
+        height="100%"
       >
         <Typography
           variant="h5"
@@ -46,9 +47,20 @@ export default function RantCard({ rant, hideCompanyButton }) {
             Ver Empresa
           </Button>
         )}
-        <Box mt={1}>
-          <Typography variant="body1" display="block">
+        <Box display="flex" flexDirection="column" height="100%" justifyContent="space-between">
+          <Typography variant="body1">
             { rant.description }
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{
+              paddingTop: '8px',
+              fontSize: '0.75em',
+            }}
+          >
+            Adicionado em:
+            {' '}
+            { new Date(rant.createdAt).toLocaleString() }
           </Typography>
         </Box>
       </Box>
