@@ -11,7 +11,7 @@ export default function Home() {
   const { data: companies, loading } = useCompanies()
 
   return (
-    <Layout>
+    <Layout title="Empresas">
       <Box
         display="flex"
         flexDirection="column"

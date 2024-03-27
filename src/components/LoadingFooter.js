@@ -7,10 +7,12 @@ import {
 export default function LoadingFooter() {
   return (
     <Box
+      mt={4}
       display="flex"
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
+      width="100%"
       gap={2}
     >
       <CircularProgress size={48} />

@@ -5,10 +5,11 @@ import { Box } from '@mui/material'
 import Head from './Head'
 import Navbar from './Navbar'
 
-export default function Layout({ previewImage, children }) {
+export default function Layout({ title, previewImage, children }) {
   return (
     <>
       <Head
+        title={title}
         previewImage={previewImage}
       />
       <Box
@@ -28,6 +29,7 @@ export default function Layout({ previewImage, children }) {
 }
 
 Layout.propTypes = {
+  title: PropTypes.string,
   children: PropTypes.node,
   previewImage: PropTypes.string,
 }

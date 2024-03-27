@@ -42,7 +42,7 @@ export default function Home() {
   }, [], 100))
 
   return (
-    <Layout>
+    <Layout title="Últimas reclamações">
       <Box
         display="flex"
         flexDirection="column"

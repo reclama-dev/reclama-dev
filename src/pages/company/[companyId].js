@@ -19,7 +19,7 @@ export default function Home() {
   ), [companyId, companyRants])
 
   return (
-    <Layout>
+    <Layout title="Empresa">
       <Box
         display="flex"
         flexDirection="column"
