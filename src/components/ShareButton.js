@@ -1,25 +1,32 @@
+import PropTypes from 'prop-types'
 import { Button } from '@mui/material'
+import SendIcon from '@mui/icons-material/Send'
 import copy from 'copy-to-clipboard'
 import { toast } from 'react-toastify'
 
-export default function ShareButton() {
+export default function ShareButton({ link }) {
   return (
     <Button
-      variant="contained"
+      variant="outlined"
       color="primary"
-      size="large"
+      endIcon={<SendIcon />}
       onClick={async () => {
         const isWindows = navigator.userAgent.includes('Windows')
+        const sharedLink = link ? `${window.location.origin}${link}` : window.location.href
         if (navigator.share && !isWindows) {
-          navigator.share({ url: window.location.href })
+          navigator.share({ url: sharedLink })
           return
         }
 
-        copy(window.location.href)
-        toast('Link copied to clipboard!')
+        copy(sharedLink)
+        toast('Link da reclamação copiado!')
       }}
     >
-      Share
+      Compartilhar
     </Button>
   )
+}
+
+ShareButton.propTypes = {
+  link: PropTypes.string,
 }

@@ -17,9 +17,10 @@ query Rants($limit: Int, $offset: Int, $company_id: ID) {
 }
 `
 
-export default function useRants({ companyId } = {}) {
+export default function useRants({ companyId, ...options } = {}) {
   const [hasMoreResults, setHasMoreResults] = useState(true)
   const { data, ...rest } = useQuery(RANTS_QUERY, {
+    ...options,
     notifyOnNetworkStatusChange: true,
     variables: {
       offset: 0,
