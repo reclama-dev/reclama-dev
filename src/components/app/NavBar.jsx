@@ -16,7 +16,10 @@ import {
 export const NavBar = () => {
   return (
     <nav className="flex justify-between items-center py-4 px-5 bg-on-background border-b-2 border-foreground/20">
-      <div className="flex gap-2 items-center">
+      <Link
+        className="flex gap-2 items-center"
+        href="/"
+      >
         <Image
           className="rounded-full"
           src="/images/favicon.png"
@@ -27,7 +30,7 @@ export const NavBar = () => {
         <h1 className="text-2xl font-bold text-primary dark:text-accent">
           Reclama<span className="dark:text-success text-blue-600">.dev</span>
         </h1>
-      </div>
+      </Link>
       <div className="flex gap-2 items-center">
         <SetThemeButton />
         <Link
@@ -44,6 +47,8 @@ export const NavBar = () => {
         </Link>
         <CreateRantDialog />
         <Link
+          about="Fonte dos dados"
+          target="_blank"
           className="bg-accent flex gap-2 items-center text-accent-foreground hover:bg-accent/90 px-4 py-2 rounded-md text-sm font-medium transition-colors"
           href="https://docs.google.com/spreadsheets/d/1u1_8ND_BY1DaGaQdu0ZRZPebrOaTJekE9hyw_7BAlzw?usp=sharing"
         >
