@@ -147,7 +147,7 @@ export default function Navbar() {
           </Typography>
           <List sx={{ textAlign: 'left' }}>
             {NAV_ITEMS.map((item) => (
-              <ListItem key={item.href} disablePadding>
+              <ListItem key={item.label} disablePadding>
                 <ListItemButton
                   key={item.label}
                   {...item}

@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import Dialog from './Dialog'
 import DialogActions from './DialogActions'
 import TextInputField from './TextInputField'
+import ShareButton from './ShareButton'
 import useCreateRant from '../hooks/useCreateRant'
 
 export default function CreateRantDialog({ open, onClose }) {
@@ -25,10 +26,21 @@ export default function CreateRantDialog({ open, onClose }) {
   const [createRant] = useCreateRant()
 
   const onSubmit = useCallback(async (data) => {
-    await createRant({
+    const rant = await createRant({
       variables: data,
     })
-    toast('Sua reclamação foi publicada!')
+    toast((
+      <>
+        <Box pb={1}>
+          Reclamação publicada!
+        </Box>
+        <Box display="flex" justifyContent="center">
+          <ShareButton
+            link={`/rant/${rant.id}`}
+          />
+        </Box>
+      </>
+    ))
     reset()
     onClose()
   }, [createRant, reset, onClose])
