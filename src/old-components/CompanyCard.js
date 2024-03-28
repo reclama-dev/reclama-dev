@@ -19,8 +19,8 @@ export default function CompanyCard({ company }) {
         <Button
           component={Link}
           href={`/company/${company.id}`}
-          variant="contained"
-          color="primary"
+          variant="ghost"
+          className="dark:text-accent-foreground/70 hover:bg-accent/90 dark:hover:bg-accent/90 hover:dark:text-accent-foreground "
         >
           Ver Reclamações
         </Button>

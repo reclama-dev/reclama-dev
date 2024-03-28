@@ -13,14 +13,14 @@ export default function App({ Component, pageProps }) {
       <ApolloProvider>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
           disableTransitionOnChange
         >
           <NavBar />
           <Component {...pageProps} />
         </ThemeProvider>
+        <Toaster />
       </ApolloProvider>
-      <Toaster />
     </AppCacheProvider>
   )
 }

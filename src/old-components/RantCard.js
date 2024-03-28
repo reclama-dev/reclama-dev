@@ -1,5 +1,6 @@
-import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import {} from '@mui/material'
 import { SquareArrowOutUpRight } from 'lucide-react'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
@@ -10,8 +11,8 @@ export default function RantCard({ rant, hideCompanyButton }) {
   const link = useMemo(() => `/rant/${rant.id}`, [rant])
 
   return (
-    <Card className=" h-full min-h-80 max-w-md shadow-sm py-2">
-      <CardTitle>
+    <Card className="flex flex-col h-full min-h-80 max-w-md shadow-sm p-2 py-4">
+      <CardHeader className="p-2 mb-2 gap-2">
         <h5 className="flex flex-col justify-center gap-1 items-center font-semibold text-xl">
           {rant.company.name}
           {!hideCompanyButton && (
@@ -24,17 +25,17 @@ export default function RantCard({ rant, hideCompanyButton }) {
             </Link>
           )}
         </h5>
-        <Separator className="mt-2 mb-4" />
-      </CardTitle>
-      <CardContent>
-        <p className="text-base text-primary dark:text-card-foreground/50 font-regular">
+        <Separator className="mb-4" />
+      </CardHeader>
+      <CardContent className="mb-10 flex-1">
+        <p className="text-base text-primary dark:text-card-foreground/50 font-regular text-justify">
           {rant.description}
         </p>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex justify-between">
         <ShareButton link={link} />
         <p
-          className="text-zinc-400 text-sm font-regular"
+          className="text-zinc-400 text-xs font-regular"
           sx={{
             fontSize: '0.75em',
           }}

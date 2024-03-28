@@ -1,16 +1,14 @@
 import { Button } from '@/components/ui/button'
-import SendIcon from '@mui/icons-material/Send'
 import copy from 'copy-to-clipboard'
+import { Share } from 'lucide-react'
 import PropTypes from 'prop-types'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 
 export default function ShareButton({ link }) {
   return (
     <Button
-      className="flex flex-row gap-1"
+      className="flex flex-row gap-2 dark:text-accent-foreground/50 hover:dark:text-primary text-accent-foreground hover:bg-accent/90 px-4 py-2 rounded-md text-sm font-medium transition-colors"
       variant="outlined"
-      color="primary"
-      endIcon={<SendIcon />}
       onClick={async () => {
         const isWindows = navigator.userAgent.includes('Windows')
         const sharedLink = link
@@ -22,10 +20,11 @@ export default function ShareButton({ link }) {
         }
 
         copy(sharedLink)
-        toast('Link da reclamação copiado!')
+        toast.success('Link copiado para a área de transferência')
       }}
     >
       Compartilhar
+      <Share size={16} />
     </Button>
   )
 }
