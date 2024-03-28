@@ -1,10 +1,14 @@
 import {
   Html, Head, Main, NextScript,
 } from 'next/document'
+import {
+  DocumentHeadTags,
+  documentGetInitialProps,
+} from '@mui/material-nextjs/v14-pagesRouter'
 
 const { GTM_TAG_ID } = process.env
 
-export default function MyDocument() {
+export default function MyDocument(props) {
   return (
     <Html lang="en">
       <Head>
@@ -35,6 +39,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
         )}
+        <DocumentHeadTags {...props} />
       </Head>
       <body>
         {GTM_TAG_ID && (
@@ -53,4 +58,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       </body>
     </Html>
   )
+}
+
+MyDocument.getInitialProps = async (ctx) => {
+  const finalProps = await documentGetInitialProps(ctx)
+  return finalProps
 }

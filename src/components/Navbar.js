@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useMemo, useState, useCallback } from 'react'
 import {
   AppBar,
   Toolbar,
@@ -16,38 +16,41 @@ import {
 import MenuIcon from '@mui/icons-material/Menu'
 import Link from 'next/link'
 import Logo from './Logo'
+import CreateRantDialog from './CreateRantDialog'
 
 const DRAWER_WIDTH = 240
-
-const NAV_ITEMS = [
-  {
-    label: 'Todas as Reclamações',
-    href: '/',
-    color: 'primary',
-    variant: 'contained',
-  },
-  {
-    label: 'Empresas',
-    href: '/companies',
-    variant: 'outlined',
-  },
-  {
-    label: 'Reclamar',
-    rel: 'noopener noreferrer',
-    target: '_blank',
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLSdsmCP5YB4zgtfhR5xLFeqoCMDBVVcNLe2KIzAdJelwPs5-1A/viewform',
-  },
-  {
-    label: 'Fonte dos Dados',
-    rel: 'noopener noreferrer',
-    target: '_blank',
-    href: 'https://docs.google.com/spreadsheets/d/1u1_8ND_BY1DaGaQdu0ZRZPebrOaTJekE9hyw_7BAlzw?usp=sharing',
-  },
-]
 
 export default function Navbar() {
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [createRantOpen, setCreateRantOpen] = useState(false)
+
+  const NAV_ITEMS = useMemo(() => [
+    {
+      component: Link,
+      label: 'Todas as Reclamações',
+      href: '/',
+      color: 'primary',
+      variant: 'contained',
+    },
+    {
+      component: Link,
+      label: 'Empresas',
+      href: '/companies',
+      variant: 'outlined',
+    },
+    {
+      label: 'Reclamar',
+      onClick: () => setCreateRantOpen(true),
+    },
+    {
+      component: Link,
+      label: 'Fonte dos Dados',
+      rel: 'noopener noreferrer',
+      target: '_blank',
+      href: 'https://docs.google.com/spreadsheets/d/1u1_8ND_BY1DaGaQdu0ZRZPebrOaTJekE9hyw_7BAlzw?usp=sharing',
+    },
+  ], [setCreateRantOpen])
 
   const handleDrawerToggle = useCallback(() => {
     setMobileOpen((isOpen) => !isOpen)
@@ -90,7 +93,6 @@ export default function Navbar() {
             {NAV_ITEMS.map(({ label, ...item }) => (
               <Button
                 key={label}
-                component={Link}
                 color="primary"
                 variant="text"
                 {...item}
@@ -147,11 +149,8 @@ export default function Navbar() {
             {NAV_ITEMS.map((item) => (
               <ListItem key={item.href} disablePadding>
                 <ListItemButton
-                  component={Link}
-                  href={item.href}
-                  target={item.target}
-                  rel={item.rel}
-                  key={item.href}
+                  key={item.label}
+                  {...item}
                 >
                   <ListItemText primary={item.label} />
                 </ListItemButton>
@@ -160,6 +159,10 @@ export default function Navbar() {
           </List>
         </Drawer>
       </Box>
+      <CreateRantDialog
+        open={createRantOpen}
+        onClose={() => setCreateRantOpen(false)}
+      />
     </>
   )
 }
