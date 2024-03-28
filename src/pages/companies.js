@@ -6,6 +6,7 @@ import Layout from '../components/Layout'
 import useCompanies from '../hooks/useCompanies'
 import CompanyCard from '../components/CompanyCard'
 import LoadingFooter from '../components/LoadingFooter'
+import Sponsor from '../components/Sponsor'
 
 export default function Home() {
   const { data: companies, loading } = useCompanies()
@@ -20,6 +21,7 @@ export default function Home() {
         width="100%"
         gap={1}
       >
+        <Sponsor />
         <Typography
           variant="h1"
         >

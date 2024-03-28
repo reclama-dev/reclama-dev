@@ -9,6 +9,7 @@ import RantCard from '../../components/RantCard'
 import Disclaimer from '../../components/Disclaimer'
 import useRants from '../../hooks/useRants'
 import LoadingFooter from '../../components/LoadingFooter'
+import Sponsor from '../../components/Sponsor'
 
 export default function Home() {
   const router = useRouter()
@@ -29,6 +30,7 @@ export default function Home() {
         gap={1}
       >
         <Disclaimer />
+        <Sponsor />
         <Typography
           variant="h1"
         >

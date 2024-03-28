@@ -9,6 +9,7 @@ import useWindowScroll from 'beautiful-react-hooks/useWindowScroll'
 import Layout from '../../components/Layout'
 import RantCard from '../../components/RantCard'
 import Disclaimer from '../../components/Disclaimer'
+import Sponsor from '../../components/Sponsor'
 import useRants from '../../hooks/useRants'
 import useRant from '../../hooks/useRant'
 import LoadingFooter from '../../components/LoadingFooter'
@@ -57,6 +58,7 @@ export default function Home() {
         gap={1}
       >
         <Disclaimer />
+        <Sponsor />
         <Typography
           variant="h1"
         >

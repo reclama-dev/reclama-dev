@@ -8,6 +8,7 @@ import useThrottledCallback from 'beautiful-react-hooks/useThrottledCallback'
 import useWindowScroll from 'beautiful-react-hooks/useWindowScroll'
 import Layout from '../components/Layout'
 import Disclaimer from '../components/Disclaimer'
+import Sponsor from '../components/Sponsor'
 import RantCard from '../components/RantCard'
 import useRants from '../hooks/useRants'
 
@@ -52,6 +53,7 @@ export default function Home() {
         gap={1}
       >
         <Disclaimer />
+        <Sponsor />
         <Typography
           variant="h1"
         >
