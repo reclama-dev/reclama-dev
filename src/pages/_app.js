@@ -1,36 +1,26 @@
-import PropTypes from 'prop-types'
 import { AppCacheProvider } from '@mui/material-nextjs/v14-pagesRouter'
-import { ThemeProvider } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import { ToastContainer } from 'react-toastify'
+import PropTypes from 'prop-types'
 import ApolloProvider from '../Apollo'
-import theme from '../theme'
 
-import 'react-toastify/dist/ReactToastify.css'
+import { NavBar } from '@/components/app/NavBar'
+import { ThemeProvider } from '@/components/app/ThemeProvider'
+import { Toaster } from '@/components/ui/sonner'
 import '../styles/globals.css'
 
 export default function App({ Component, pageProps }) {
   return (
     <AppCacheProvider>
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <ApolloProvider>
+      <ApolloProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          disableTransitionOnChange
+        >
+          <NavBar />
           <Component {...pageProps} />
-        </ApolloProvider>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-      </ThemeProvider>
+        </ThemeProvider>
+      </ApolloProvider>
+      <Toaster />
     </AppCacheProvider>
   )
 }
