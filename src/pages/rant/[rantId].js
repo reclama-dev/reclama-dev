@@ -1,3 +1,4 @@
+import { RenderRantCards } from '@/components/app/RenderRantCards'
 import useThrottledCallback from 'beautiful-react-hooks/useThrottledCallback'
 import useWindowScroll from 'beautiful-react-hooks/useWindowScroll'
 import { useRouter } from 'next/router'
@@ -49,7 +50,7 @@ export default function Home() {
   )
 
   return (
-    <section className="py-5">
+    <section className="p-5">
       <div className="flex flex-col items-center h-full w-full space-y-1">
         <Disclaimer />
         <Sponsor />
@@ -61,15 +62,8 @@ export default function Home() {
             <h1 className="text-2xl font-semibold pt-8 pb-4">
               Últimas Reclamações:
             </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
-              {rants?.map((rantItem) => (
-                <RantCard
-                  key={rantItem.id}
-                  rant={rantItem}
-                />
-              ))}
-              {loading && <LoadingFooter />}
-            </div>
+            <RenderRantCards rants={rants} />
+            {loading && <LoadingFooter />}
           </>
         )}
       </div>

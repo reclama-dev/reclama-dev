@@ -16,11 +16,13 @@ export default function Home() {
   )
 
   return (
-    <div className="py-5">
+    <div className="p-5">
       <div className="flex flex-col items-center size-full gap-2">
         <Disclaimer />
         <Sponsor />
-        <h1 className="text-2xl font-semibold py-4">Reclamações:</h1>
+        <h1 className="text-2xl font-semibold py-4">
+          Reclamações {companyRants[0].company.name}:
+        </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
           {rants?.map((rant) => (
             <RantCard

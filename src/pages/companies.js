@@ -7,7 +7,7 @@ export default function Home() {
   const { data: companies, loading } = useCompanies()
 
   return (
-    <div className="py-5">
+    <div className="p-5">
       <div className="flex flex-col items-center h-full w-full space-y-1">
         <Sponsor />
         <h1 className="text-2xl font-semibold py-4">Empresas:</h1>

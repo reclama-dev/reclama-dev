@@ -13,7 +13,7 @@ export default function RantCard({ rant, hideCompanyButton }) {
   return (
     <Card className="flex flex-col h-full min-h-80 max-w-md shadow-sm p-2 py-4">
       <CardHeader className="p-2 mb-2 gap-2">
-        <h5 className="flex flex-col justify-center gap-1 items-center font-semibold text-xl">
+        <h5 className="flex justify-between gap-1 items-center font-semibold text-xl">
           {rant.company.name}
           {!hideCompanyButton && (
             <Link
@@ -27,12 +27,12 @@ export default function RantCard({ rant, hideCompanyButton }) {
         </h5>
         <Separator className="mb-4" />
       </CardHeader>
-      <CardContent className="mb-10 flex-1">
+      <CardContent className="mb-10 flex-1 p-2">
         <p className="text-base text-primary dark:text-card-foreground/50 font-regular text-justify">
           {rant.description}
         </p>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter className="flex justify-between p-2">
         <ShareButton link={link} />
         <p
           className="text-zinc-400 text-xs font-regular"

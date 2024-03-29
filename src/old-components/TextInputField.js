@@ -1,28 +1,51 @@
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import PropTypes from 'prop-types'
-import { TextField } from '@mui/material'
 import { useFormContext } from 'react-hook-form'
 
 export default function TextInputField({
-  name, validate, helperText, ...props
+  name,
+  validate,
+  helperText,
+  type,
+  ...props
 }) {
   const { register, watch, formState } = useFormContext()
   const error = formState.errors[name]?.message
   const value = watch(name)
   return (
-    <TextField
-      variant="outlined"
-      color="white"
-      InputLabelProps={{
-        shrink: true,
-      }}
-      {...props}
-      value={value}
-      error={Boolean(error)}
-      helperText={error || helperText}
-      {...register(name, {
-        validate,
-      })}
-    />
+    <>
+      <label
+        htmlFor={name}
+        className="text-sm font-medium text-card-foreground dark:text-card-background"
+      >
+        {props.label}
+      </label>
+      {type === 'textarea' ? (
+        <Textarea
+          {...props}
+          name={name}
+          id={name}
+          value={value}
+          error={Boolean(error)}
+          {...register(name, {
+            validate,
+          })}
+        />
+      ) : (
+        <Input
+          {...props}
+          name={name}
+          id={name}
+          value={value}
+          error={Boolean(error)}
+          hel={error || helperText}
+          {...register(name, {
+            validate,
+          })}
+        />
+      )}
+    </>
   )
 }
 

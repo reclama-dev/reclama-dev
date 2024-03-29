@@ -1,7 +1,8 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import CreateRantDialog from '@/old-components/CreateRantDialog'
-import { Moon, SquareArrowOutUpRight, Sun } from 'lucide-react'
+import { Github, Moon, SquareArrowOutUpRight, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -31,7 +32,7 @@ export const NavBar = () => {
           Reclama<span className="dark:text-success text-blue-600">.dev</span>
         </h1>
       </Link>
-      <div className="flex gap-2 items-center">
+      <div className="gap-2 items-center hidden md:flex">
         <SetThemeButton />
         <Link
           href="/"
@@ -55,12 +56,20 @@ export const NavBar = () => {
           Fonte dos dados
           <SquareArrowOutUpRight size={16} />
         </Link>
+        <Link
+          about="Fonte dos dados"
+          target="_blank"
+          className="bg-accent flex justify-center gap-2 items-center text-accent-foreground hover:bg-accent/90 size-9 rounded-md text-sm font-medium transition-colors"
+          href="https://github.com/reclama-dev/reclama-dev"
+        >
+          <Github size={16} />
+        </Link>
       </div>
     </nav>
   )
 }
 
-export const SetThemeButton = () => {
+export const SetThemeButton = ({ inDrawer }) => {
   const { setTheme } = useTheme()
   return (
     <DropdownMenu>
@@ -68,10 +77,16 @@ export const SetThemeButton = () => {
         <Button
           variant="outline"
           size="icon"
+          className={cn('', { 'flex items-center gap-1 size-full': inDrawer })}
         >
+          {inDrawer ? 'Mudar tema' : null}
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
+          <Moon
+            className={cn(
+              'h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100',
+              { absolute: !inDrawer },
+            )}
+          />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
