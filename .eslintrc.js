@@ -4,10 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: [
-    'next/core-web-vitals',
-    'airbnb',
-  ],
+  extends: ['next/core-web-vitals', 'airbnb', 'prettier'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',

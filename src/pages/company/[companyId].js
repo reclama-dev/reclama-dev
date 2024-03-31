@@ -1,48 +1,29 @@
-import { useMemo } from 'react'
-import {
-  Box,
-  Typography,
-} from '@mui/material'
 import { useRouter } from 'next/router'
-import Layout from '../../components/Layout'
-import RantCard from '../../components/RantCard'
-import Disclaimer from '../../components/Disclaimer'
+import { useMemo } from 'react'
 import useRants from '../../hooks/useRants'
-import LoadingFooter from '../../components/LoadingFooter'
-import Sponsor from '../../components/Sponsor'
+import Disclaimer from '../../old-components/Disclaimer'
+import LoadingFooter from '../../old-components/LoadingFooter'
+import RantCard from '../../old-components/RantCard'
+import Sponsor from '../../old-components/Sponsor'
 
 export default function Home() {
   const router = useRouter()
   const { companyId } = router.query
   const { data: companyRants, loading } = useRants({ companyId })
-  const rants = useMemo(() => (
-    companyRants.filter((r) => r.company.id === companyId)
-  ), [companyId, companyRants])
+  const rants = useMemo(
+    () => companyRants.filter((r) => r.company.id === companyId),
+    [companyId, companyRants],
+  )
 
   return (
-    <Layout title="Empresa">
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        height="100%"
-        width="100%"
-        gap={1}
-      >
+    <div className="p-5">
+      <div className="flex flex-col items-center size-full gap-2">
         <Disclaimer />
         <Sponsor />
-        <Typography
-          variant="h1"
-        >
-          Reclamações:
-        </Typography>
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          justifyContent="center"
-          py={4}
-          gap={2}
-        >
+        <h1 className="text-2xl font-semibold py-4">
+          Reclamações {companyRants[0]?.company.name}:
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 ">
           {rants?.map((rant) => (
             <RantCard
               key={rant.id}
@@ -50,11 +31,9 @@ export default function Home() {
               hideCompanyButton
             />
           ))}
-          {loading && (
-            <LoadingFooter />
-          )}
-        </Box>
-      </Box>
-    </Layout>
+          {loading && <LoadingFooter />}
+        </div>
+      </div>
+    </div>
   )
 }

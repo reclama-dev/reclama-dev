@@ -1,16 +1,11 @@
-import { useRef, useEffect } from 'react'
-import {
-  Box,
-  CircularProgress,
-  Typography,
-} from '@mui/material'
+import { RenderRantCards } from '@/components/app/RenderRantCards'
+import LoadingFooter from '@/old-components/LoadingFooter'
 import useThrottledCallback from 'beautiful-react-hooks/useThrottledCallback'
 import useWindowScroll from 'beautiful-react-hooks/useWindowScroll'
-import Layout from '../components/Layout'
-import Disclaimer from '../components/Disclaimer'
-import Sponsor from '../components/Sponsor'
-import RantCard from '../components/RantCard'
+import { useEffect, useRef } from 'react'
 import useRants from '../hooks/useRants'
+import Disclaimer from '../old-components/Disclaimer'
+import Sponsor from '../old-components/Sponsor'
 
 export default function Home() {
   const paginationRef = useRef(null)
@@ -24,72 +19,41 @@ export default function Home() {
   }, [loading, fetchMore])
 
   const onWindowScroll = useWindowScroll()
-  onWindowScroll(useThrottledCallback(() => {
-    if (!paginationRef.current) {
-      return
-    }
+  onWindowScroll(
+    useThrottledCallback(
+      () => {
+        if (!paginationRef.current) {
+          return
+        }
 
-    if (paginationRef.current.loading) {
-      return
-    }
+        if (paginationRef.current.loading) {
+          return
+        }
 
-    const viewportHeight = window.innerHeight
-    const { scrollHeight } = document.documentElement
-    const scrollBottom = window.scrollY + viewportHeight
-    const shouldFetchMore = (scrollHeight - scrollBottom) < viewportHeight
-    if (shouldFetchMore) {
-      paginationRef.current.fetchMore()
-    }
-  }, [], 100))
+        const viewportHeight = window.innerHeight
+        const { scrollHeight } = document.documentElement
+        const scrollBottom = window.scrollY + viewportHeight
+        const shouldFetchMore = scrollHeight - scrollBottom < viewportHeight
+        if (shouldFetchMore) {
+          paginationRef.current.fetchMore()
+        }
+      },
+      [],
+      100,
+    ),
+  )
 
   return (
-    <Layout title="Últimas reclamações">
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        height="100%"
-        width="100%"
-        gap={1}
-      >
-        <Disclaimer />
-        <Sponsor />
-        <Typography
-          variant="h1"
-        >
-          Últimas reclamações:
-        </Typography>
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          justifyContent="center"
-          py={4}
-          gap={2}
-        >
-          {rants?.map((rant) => (
-            <RantCard
-              key={rant.id}
-              rant={rant}
-            />
-          ))}
-          {loading && (
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            width="100%"
-            pt={6}
-            gap={2}
-          >
-            <CircularProgress size={48} />
-            <Typography variant="h4">
-              Carregando...
-            </Typography>
-          </Box>
-          )}
-        </Box>
-      </Box>
-    </Layout>
+    <section className="max-w-screen w-full min-h-screen p-5 subpixel-antialiased">
+      <div className="flex flex-col items-center h-full w-full gap-2">
+        <div className="flex flex-col gap-2">
+          <Disclaimer />
+          <Sponsor />
+        </div>
+        <h1 className="font-semibold text-2xl my-3">Últimas reclamações:</h1>
+        <RenderRantCards rants={rants} />
+        {loading && <LoadingFooter />}
+      </div>
+    </section>
   )
 }

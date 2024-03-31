@@ -1,50 +1,26 @@
-import {
-  Box,
-  Typography,
-} from '@mui/material'
-import Layout from '../components/Layout'
 import useCompanies from '../hooks/useCompanies'
-import CompanyCard from '../components/CompanyCard'
-import LoadingFooter from '../components/LoadingFooter'
-import Sponsor from '../components/Sponsor'
+import CompanyCard from '../old-components/CompanyCard'
+import LoadingFooter from '../old-components/LoadingFooter'
+import Sponsor from '../old-components/Sponsor'
 
 export default function Home() {
   const { data: companies, loading } = useCompanies()
 
   return (
-    <Layout title="Empresas">
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        height="100%"
-        width="100%"
-        gap={1}
-      >
+    <div className="p-5">
+      <div className="flex flex-col items-center h-full w-full space-y-1">
         <Sponsor />
-        <Typography
-          variant="h1"
-        >
-          Empresas:
-        </Typography>
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          justifyContent="center"
-          py={4}
-          gap={2}
-        >
+        <h1 className="text-2xl font-semibold py-4">Empresas:</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {companies?.map((company) => (
             <CompanyCard
               key={company.id}
               company={company}
             />
           ))}
-          {loading && (
-            <LoadingFooter />
-          )}
-        </Box>
-      </Box>
-    </Layout>
+        </div>
+        {loading && <LoadingFooter />}
+      </div>
+    </div>
   )
 }
