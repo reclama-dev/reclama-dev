@@ -7,7 +7,7 @@ export default function Disclaimer() {
   return (
     <Alert
       variant="warning"
-      className="max-w-2xl"
+      className="max-w-3xl"
     >
       <AlertTitle>
         <div className="flex gap-2 mb-2">
@@ -17,6 +17,21 @@ export default function Disclaimer() {
         <span className="text-sm">
           Todas as opiniões expressas nesta página não necessariamente refletem
           a opinião do mantenedor deste board.
+        </span>
+        <br />
+        <span className="text-sm">
+          O projeto original está hospedado
+          {' '}
+          <Link
+            className="underline text-blue-500 hover:text-blue-700"
+            label="Worst Place to Work"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://worstplacetowork.com.br/"
+          >
+            nesta página
+          </Link>
+          .
         </span>
       </AlertTitle>
       <AlertDescription>
