@@ -7,7 +7,7 @@ export default function Disclaimer() {
   return (
     <Alert
       variant="warning"
-      className="max-w-2xl"
+      className="max-w-3xl"
     >
       <AlertTitle>
         <div className="flex gap-2 mb-2">
