@@ -10,13 +10,14 @@ import {
 import { cn } from '@/lib/utils'
 import {} from '@radix-ui/react-dialog'
 import PropTypes from 'prop-types'
-import { useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 import useCreateRant from '../hooks/useCreateRant'
 import TextInputField from './TextInputField'
 
 export default function CreateRantDialog({ inDrawer }) {
+  const [open, setOpen] = useState(false)
   const formMethods = useForm({
     defaultValues: {
       company: '',
@@ -32,15 +33,19 @@ export default function CreateRantDialog({ inDrawer }) {
       const rant = await createRant({
         variables: data,
       })
-      toast.success('Reclamação criada com sucesso!')
+
+      setOpen(false)
       reset()
-      onClose()
+      toast.success('Reclamação criada com sucesso!')
     },
     [createRant, reset],
   )
 
   return (
-    <Dialog>
+    <Dialog
+      open={open}
+      onOpenChange={newOpen => setOpen(newOpen)}
+    >
       <DialogTrigger asChild>
         <Button
           variant="default"
@@ -84,8 +89,9 @@ export default function CreateRantDialog({ inDrawer }) {
                 <Button
                   type="submit"
                   variant="default"
+                  disabled={formState.isSubmitting}
                 >
-                  Reclamar
+                  {formState.isSubmitting ? 'Carregando...' : 'Reclamar'}
                 </Button>
               </div>
             </DialogFooter>
