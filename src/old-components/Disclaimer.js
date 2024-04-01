@@ -18,6 +18,21 @@ export default function Disclaimer() {
           Todas as opiniões expressas nesta página não necessariamente refletem
           a opinião do mantenedor deste board.
         </span>
+        <br />
+        <span className="text-sm">
+          O projeto original está hospedado
+          {' '}
+          <Link
+            className="underline text-blue-500 hover:text-blue-700"
+            label="Worst Place to Work"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://worstplacetowork.com.br/"
+          >
+            nesta página
+          </Link>
+          .
+        </span>
       </AlertTitle>
       <AlertDescription>
         Todo o conteúdo exibido aqui reflete as respostas dos usuários que está{' '}
