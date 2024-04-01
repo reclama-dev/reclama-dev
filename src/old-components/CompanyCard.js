@@ -16,14 +16,12 @@ export default function CompanyCard({ company }) {
         >
           {company.name}
         </h5>
-        <Button
-          component={Link}
+        <Link
           href={`/company/${company.id}`}
-          variant="ghost"
-          className="dark:text-accent-foreground/70 hover:bg-accent/90 dark:hover:bg-accent/90 hover:dark:text-accent-foreground "
+          className="dark:text-accent-foreground/70 hover:bg-accent/90 dark:hover:bg-accent/90 hover:dark:text-accent-foreground px-2 py-1 text-center rounded"
         >
           Ver Reclamações
-        </Button>
+        </Link>
       </div>
     </Card>
   )
